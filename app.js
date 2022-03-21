@@ -17,7 +17,7 @@ const app = express();
 passportConfig();
 
 // 포트 번호 5050 으로 설정
-app.set('port',process.env.PORT || 5050);
+app.set('port',process.env.PORT || 8002);
 
 // 무슨 엔진으로 작동 시킬지
 app.set('view engine', 'html');
@@ -30,7 +30,7 @@ sequelize.sync({force : false})
     .then(() => {
         console.log('데이터 베이스 연결 성공 계속하자!');
     })
-    .errorㅇㅎ((err) => {
+    .catch((err) => {
         console.error(err);
         console.error("에러발생 한번 확인해보세요!\n");
     });
@@ -74,8 +74,8 @@ app.use((err,req,res,next) => {
     res.render('오류 500 발생!');
 
 });
-app.listen(app.get('port'),() => {
-    console.log(add.get('port'), '한조 대기중이 아닌 포트 대기중');
+app.listen(app.get('port') ,() => {
+    console.log(app.get('port'), '한조 대기중이 아닌 포트 대기중');
 });
 
 // https://bcho.tistory.com/887 이 블로그 보고 한번 공부해보자
