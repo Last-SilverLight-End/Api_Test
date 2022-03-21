@@ -1,5 +1,5 @@
 const express = require('express');
-const path = requrie('path');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const morgan = require('morgan');
