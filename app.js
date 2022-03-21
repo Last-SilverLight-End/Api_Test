@@ -7,17 +7,18 @@ const session = require('express-session');
 const nunjucks= require('nunjucks');
 const dotenv= require('dotenv');
 
-dotenv.config();
-
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes');
 const {sequelize} = require('./models');
 const passportConfig = require('./passport');
 
+dotenv.config();
 const app = express();
 passportConfig();
 
+// 포트 번호 5050 으로 설정
 app.set('port',process.env.PORT || 5050);
+
 app.set('view engine', 'html');
 nunjucks.configure('views',{
    express:app,
@@ -43,6 +44,8 @@ app.use(session({
         resave:true,
         saveUninitialized:false,
         secret:process.env.COOKIE_SECRET,
+        
+            // cookie 부분 일부분 수정 및 추가
         cookie:{
             httpOnly : true,
             secure : false,
@@ -73,3 +76,4 @@ app.use((err,req,res,next) => {
 app.listen(app.get('port'),() => {
     console.log(add.get('port'), '한조 대기중이 아닌 포트 대기중');
 });
+
