@@ -19,17 +19,18 @@ passportConfig();
 // 포트 번호 5050 으로 설정
 app.set('port',process.env.PORT || 5050);
 
+// 무슨 엔진으로 작동 시킬지
 app.set('view engine', 'html');
 nunjucks.configure('views',{
    express:app,
    watch:true, 
 });
-
+ // 싱크 맞추어져 잇는지 확인
 sequelize.sync({force : false})
     .then(() => {
         console.log('데이터 베이스 연결 성공 계속하자!');
     })
-    .error((err) => {
+    .errorㅇㅎ((err) => {
         console.error(err);
         console.error("에러발생 한번 확인해보세요!\n");
     });
@@ -77,3 +78,4 @@ app.listen(app.get('port'),() => {
     console.log(add.get('port'), '한조 대기중이 아닌 포트 대기중');
 });
 
+// https://bcho.tistory.com/887 이 블로그 보고 한번 공부해보자
